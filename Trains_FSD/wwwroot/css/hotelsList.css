@@ -1,0 +1,71 @@
+﻿
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    height: 250px;
+    background-size: cover;
+    position: relative;
+    z-index: -2;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+    z-index: -1;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+}
+
+.card-title,
+.card-city {
+    font-style: italic;
+    color: white;
+    font-weight: 500;
+}
+
+h1 {
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.container {
+    margin-top: 5%;
+}
+
+.bookingButton {
+    margin-top: -10px;
+    text-decoration: none;
+    color: white !important;
+    background-color: #0d6efd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 100%;
+}

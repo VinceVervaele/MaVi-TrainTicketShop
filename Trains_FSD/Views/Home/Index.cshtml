@@ -1,0 +1,70 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_LayoutHomePage.cshtml";
+}
+
+<div class="container" id="homepage-grid">
+    <div class="row justify-content-md-end">
+        <div class="col-md-6 col-sm-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>@Localizer["Tickets"].Value</h2>
+                    <p>@Localizer["Click the button below to buy tickets"].Value</p>
+                    <a class="btn btn-primary card-button"
+                       asp-area="" asp-controller="Ticket" asp-action="Index">
+                        @Localizer["Buy Tickets"].Value
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>@Localizer["Cities"].Value</h2>
+                    <p>@Localizer["Click the button below to see the destinations"].Value</p>
+                    <a class="btn btn-primary card-button"
+                       asp-area="" asp-controller="City" asp-action="Cities">
+                        @Localizer["Check out cities"].Value
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>@Localizer["Shopping Cart"].Value</h2>
+                    <p>@Localizer["Click the button below to view your shopping cart and the order history"].Value</p>
+                    <a class="btn btn-primary card-button"
+                       asp-area="" asp-controller="ShoppingCart" asp-action="Index">
+                        @Localizer["View Shopping Cart"].Value
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>@Localizer["About us"].Value</h2>
+                    <p>@Localizer["Click the button below to get to know us more"].Value</p>
+                    <a class="btn btn-primary card-button"
+                       asp-area="" asp-controller="Home" asp-action="Privacy">
+                        @Localizer["Get to know us"].Value
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div >
+    <partial name="_ExploreCities" />
+</div>
+
+<div id="translationIcon">
+    @await Html.PartialAsync("_SelectCulture")
+</div>
+
+
+

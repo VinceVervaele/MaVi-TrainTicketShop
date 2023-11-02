@@ -1,0 +1,51 @@
+﻿@using Newtonsoft.Json
+
+@model Trains_FSD.ViewModels.SearchResultVM
+
+@if (Model != null)
+{ <div class="card @if (!Model.isValid) {<text>card-disabled</text>}">
+                    <div class="resultHeading">
+                        <h3 class="card-title text-center departure-arrival">@Model.DepartureCity <img src="~/images/flags/@Model.DepartureCity-flag.jpeg" alt="flag" class="country-flag"> <img src="~/images/icons/arrow-searchresult.png" alt="arrow" height="40px" class="arrow-icon"> @Model.ArrivalCity <img src="~/images/flags/@Model.ArrivalCity-flag.jpeg" alt="flag" class="country-flag"></h3>
+            @if (Model.Class == "business")
+            {
+              <img src="~/images/icons/letter-b.png" alt="business-icon" class="class-icon">
+            }
+            else
+            {
+               <img src="~/images/icons/letter-e.png" alt="economy-icon" class="class-icon">
+            }
+
+                    </div>
+                    <div class="card-body row align-items-center" style="padding-top: 0px;">
+                        <div class="col-2 d-flex align-items-center justify-content-center">
+                            <img src="~/images/icons/train-searchresult.png" alt="train-icon" width="85%">
+                        </div>
+                        <div class="col-8">
+                            <div class="transfers">
+                                <p class="transfers-heading">Transfers</p>
+                                <ul class="transfers-list">
+                        @foreach (var line in Model.Lines)
+                        {
+                            <li class="transfers-item">
+                                <p>@line.DepartureTime.ToString("dd/MM/yyyy")</p>
+                                <p>@Html.DisplayFor(item => line.DepartureCity.Name) <img src="~/images/icons/arrow-searchresult.png" alt="arrow-icon" /> @Html.DisplayFor(item => line.ArrivalCity.Name)</p>
+                                <p>@line.DepartureTime.ToString(@"HH\:mm") - @line.ArrivalTime.ToString(@"HH\:mm")</p>
+                                <p>Train @line.Train.Id</p>
+                            </li>
+                        }
+                        </ul>
+                            </div>
+                        </div>
+                        <div class="col-2 d-flex align-items-center justify-content-center">
+                            <p class="price-tag"><span>€ @Model.Price</span></p>
+
+                            <div class="add-to-cart">
+                                <a asp-action="Select" asp-route-modelJson="@JsonConvert.SerializeObject(Model)"><img src="~/images/icons/shoppingcart.png" /></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+    </div>
+}

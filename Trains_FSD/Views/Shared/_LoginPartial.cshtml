@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Trains_FSD.Areas.Data;
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<ul class="navbar-nav ">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" title="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-dark"><img src="~/images/navbar-icons/logout-nav.png" alt="logout-icon" /></button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login" title="Login"><img src="~/images/navbar-icons/login-nav.png" alt="account-icon" /></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="Register" title="Register"><img src="~/images/navbar-icons/register-nav.png" alt="account-icon" /></a>
+        </li>
+    }
+</ul>

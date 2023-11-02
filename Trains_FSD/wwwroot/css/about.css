@@ -1,0 +1,49 @@
+﻿.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding-top: 15px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.sidebar {
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+.content {
+    padding: 20px;
+}
+
+.train-pic {
+    width: 200px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.left-column {
+    width: 70%;
+}
+
+h1 {
+    text-align: center;
+    border-bottom: 1px solid gray;
+    padding-bottom: 25px;
+}
+
+p {
+    line-height: 2.1;
+}
+
+footer {
+    color: black
+}
+
+#trainImg {
+    width: 100%;
+    transform: scaleX(-1);
+}

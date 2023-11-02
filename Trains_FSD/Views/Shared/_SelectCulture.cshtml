@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> locOptions
+
+@{
+    // Represents the feature that provides the current request's culture information. (zie cookie culture wordt uitgelezen als deze aanwwezig) is)
+    var currentRequestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureItems = locOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+        .ToList();
+    var responseUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" :
+        $"~{Context.Request.Path.Value}";
+}
+
+<img src="~/images/navbar-icons/chin-translate.png" id="showLangSelector">
+<div id="langSelector">
+    <div title="@Localizer["Request the culture provider"]">
+        <form id="selectLanguage" asp-controller="Home"
+              asp-action="SetAppLanguage" asp-route-returnUrl="@responseUrl"
+              method="post" class="form-horizontal" role="form">
+            <div class="iconContainer">
+                <button type="submit" name="lang" value="en" class="iconButton"><img src="~/images/flags/en-lang.png" alt="English"></button>
+                <button type="submit" name="lang" value="nl" class="iconButton"><img src="~/images/flags/nl-lang.png" alt="French"></button>
+                <button type="submit" name="lang" value="fr" class="iconButton"><img src="~/images/flags/fr-lang.png" alt="German"></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

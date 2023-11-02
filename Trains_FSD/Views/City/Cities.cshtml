@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Trains_FSD.ViewModels.CityVM>
+
+@{
+    ViewData["Title"] = "Cities";
+    Layout = "~/Views/Shared/_LayoutCityList.cshtml";
+}
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-xl-4 col-md-6 col-lg-6 col-sm-12 mb-4">
+            @await Html.PartialAsync("DisplayTemplates/_CityView", item)
+        </div>
+    }
+</div>
+

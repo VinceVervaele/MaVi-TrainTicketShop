@@ -1,0 +1,18 @@
+﻿@model Trains_FSD.ViewModels.CityVM
+
+@if (Model != null)
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="card-img-wrapper">
+                <span class="card-tag">@Model.Name</span>
+                <img class="card-img" src="~/images/cities/@Model.Name-expl.jpeg" alt=@Model.Name-CityImage asp-append-version="true" draggable="false" />
+                <img class="card-flag" src="~/images/flags/@Model.Name-flag.jpeg" alt=@Model.Name-CountryFlag asp-append-version="true" draggable="false" />
+                <button class="card-btn">
+                    <a asp-action="TicketShop" asp-controller="Ticket" asp-route-id="@Model.Id">Order Now</a>
+                </button>
+
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Trains_FSD.ViewModels.OrderVM>
+
+@{
+    Layout = "~/Views/Shared/_LayoutShoppingCart.cshtml";
+}
+
+<h5 class="text-danger text-center">Cashback is only available for tickets that depart in 3+ days.</h5>
+
+@if (Model != null)
+{
+    @if (Model.Count() == 0)
+    {
+        <div class="row">
+            <div class="cartListItems col-12">
+                <h5>No orders have been placed yet.</h5>
+                <h5>Click <a asp-controller="Ticket" asp-action="TicketShop"> here </a> to order</h5>
+            </div>
+        </div>
+    }
+    else
+    {
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.OrderDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Confirmed)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderDate)
+                        </td>
+                        <td>
+                            @if (!item.Confirmed)
+                            {
+                                <img class="statusIcon" src="~/images/icons/x-value.png" alt="pendingIcon" />
+                            }
+                            else
+                            {
+                                <img class="statusIcon" src="~/images/icons/confirmed.png" alt="confirmedIcon" />
+                            }
+                        </td>
+                        <td>
+                            @if (!item.Confirmed)
+                            {
+                                <a href="@Url.Action("Confirm", new { id = item.Id })" class="btn-confirm">Pay Now</a>
+                            }
+                            else
+                            {
+                                <a class="disabled-btn btn-confirm">Confirmed</a>
+                            }
+
+                            @if (item.Cancellable)
+                            {
+                                <a href="@Url.Action("Cancel", new { id = item.Id })" class="btn-cancel" id="cancelBtn">Cancel W. Refund</a>
+                            } else
+                            {
+                                <a href="@Url.Action("Cancel", new { id = item.Id })" class="btn-cancel" id="cancelBtn">Cancel WO. Refund</a>
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+

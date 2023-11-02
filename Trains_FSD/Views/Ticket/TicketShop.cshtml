@@ -1,0 +1,76 @@
+@model Trains_FSD.ViewModels.TicketVM
+
+@{
+    ViewData["Title"] = "TicketShop";
+    Layout = "~/Views/Shared/_LayoutTicketShop.cshtml";
+}
+
+<div class="row">
+    <div class="searchCard col-12 col-md-4 col-lg-3 pt-2 border">
+        <form asp-action="TicketShop" name="ticketForm">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h5>Order Tickets</h5>
+            <hr />
+            <div class="form-group">
+                <label asp-for="DepartureCityId" class="control-label"></label>
+                <select id="DepartureCityList" asp-for="DepartureCityId" class="form-control"
+                        asp-items="@Model.DepartureCity">
+                    <option value="" selected disabled>Select an option</option>
+                </select>
+                <span asp-validation-for="DepartureCityId" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="ArrivalCityId" class="control-label"></label>
+                <select id="ArrivalCityList" asp-for="@Model.ArrivalCityId" class="form-control"
+                        asp-items="@Model.ArrivalCity">
+                    <option value="" selected disabled>Select an option</option>
+                </select>
+                <span asp-validation-for="ArrivalCityId" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <h5>Select Class</h5>
+                <hr />
+                <div class="classSelection">
+                    <input type="radio" asp-for="Class" name="Class" value="business" />
+                    <label for="business">Business class</label>
+                    <br />
+                    <input type="radio" asp-for="Class" name="Class" value="economy" />
+                    <label for="economy">Economy class</label>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <h5>Select Date</h5>
+                <hr />
+                <input asp-for="DepartureDate" class="form-control" placeholder="Select departure date" />
+                <span asp-validation-for="DepartureDate" class="text-danger"></span>
+                <small class="form-text text-muted">Only up to 2 weeks away.</small>
+            </div>
+            <br />
+            <button type="submit" class=" btn btn-primary card-button searchButton">Search</button>
+        </form>
+    </div>
+
+    
+    <div class="col-12 col-md-8 col-lg-9 searchResultList ">
+            @if (Model.SearchResults != null)
+            {
+                @foreach (var item in Model.SearchResults)
+                {
+                    @await Html.PartialAsync("DisplayTemplates/_SearchResultView", item);
+                }
+            }
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}
+

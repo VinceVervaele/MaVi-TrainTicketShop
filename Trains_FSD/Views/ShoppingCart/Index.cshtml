@@ -1,0 +1,145 @@
+﻿@model Trains_FSD.ViewModels.ShoppingCartVM
+
+@{
+    ViewData["Title"] = "Shoppingcart";
+    Layout = "~/Views/Shared/_LayoutShoppingCart.cshtml";
+    List<string> displayedBookingCities = new List<string>();
+}
+
+@if (Model != null && Model.Cart.Count() != 0)
+{
+    <div id="loadingScreen" style="display: none; width: ">
+        <img src="~/images/loadingIcons/citiesLoading.gif">
+    </div>
+
+    <div id="test" class="row">
+        <div class="cartListItems col-lg-8 col-md-12">
+            <h2 class="shoppingCartPageTitle">Shopping Cart</h2>
+            <hr />
+            @if (Model != null)
+            {
+                @for (int i = 0; i < Model.Cart.Count(); i++)
+                {
+                    <div id="shoppingCartItem">
+                        <div>
+                            <p id="departure-date"><strong>Dep. Date:</strong> @Model.Cart[i].SearchResultVM.DepartureDate</p>
+                            <p id="departure-city"><strong>Dep. City:</strong> @Model.Cart[i].SearchResultVM.DepartureCity</p>
+                            <p id="arrival-city"><strong>Arr. City:</strong> @Model.Cart[i].SearchResultVM.ArrivalCity</p>
+
+                        </div>
+                        <div>
+                            <p id="class"><strong>Class:</strong> @Model.Cart[i].SearchResultVM.Class</p>
+                            <p>
+                                <strong>Amount:</strong>
+                                <input id="amount-@Model.Cart[i].Cartnr" type="number" name="Amount" value="@Model.Cart[i].Amount" min="1" style="width: 70px" />
+                            </p>
+
+                            @if (!Model.Cart[i].Available)
+                            {
+                                <h5 class="text-danger">Insufficient seats</h5>
+                            }
+
+                        </div>
+
+                        <div>
+                            <p id="route-price">€@Model.Cart[i].SearchResultVM.Price</p>
+                            <a id="deleteBtn" asp-action="Delete" asp-route-id="@Model.Cart[i].Cartnr"><img src="~/images/icons/delete.png" alt="deleteIcon" /></a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div id="cartTotal" class="col-lg-4 col-md-12">
+            <div style="display: flex;">
+                <h3>
+                    Order Summary
+                </h3>
+                <a id="orderButton" asp-controller="ShoppingCart" asp-action="Order" class="btn btn-primary btn">Order</a>
+            </div>
+            <hr />
+            <div class="ms-5">
+                <p><strong>Amount:</strong> @Model.Cart.Count() item(s)</p>
+                <p><strong>Total cost:</strong> €@Model.TotalPrice</p>
+                @if (ViewBag.HotelName != null)
+                {
+                    <p><strong>Hotel Booking:</strong> @ViewBag.HotelName</p>
+                }
+            </div>
+            <div class="col-lg-4 col-md-12 w-100" style="margin-top: 50px;">
+                <h3>Hotel Booking</h3>
+                <hr />
+                @foreach (var item in Model.Cart)
+                {
+                    if (!displayedBookingCities.Contains(item.SearchResultVM.ArrivalCity))
+                    {
+                        <h5 class="text-start ms-5">
+                            <a class="hotelOfferLink" href="@Url.Action("GetHotels", "Hotel", new { cityName = item.SearchResultVM.ArrivalCity })">
+                                <img src="~/images/icons/hotelBed.png" height="30px" /> Hotel offers in @item.SearchResultVM.ArrivalCity
+                            </a>
+                        </h5>
+                        displayedBookingCities.Add(item.SearchResultVM.ArrivalCity);
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="cartListItems col-12">
+            <h2 class="shoppingCartPageTitle">Shopping Cart</h2>
+            <hr />
+            <h5>Your shoppingcart is empty at the moment ...</h5>
+            <h5>Click <a asp-controller="Ticket" asp-action="TicketShop"> here </a> to order</h5>
+        </div>
+    </div>
+}
+
+@section Scripts {
+
+    <script>
+
+        function updateShoppingcart(cartnr) {
+            var newAmount = document.getElementById("amount-" + cartnr).value;
+            var data = { cartnr: cartnr, newAmount: newAmount };
+
+            $.ajax({
+                url: '/ShoppingCart/UpdateShoppingCart',
+                type: 'POST',
+                data: { cartnr: cartnr, newAmount: newAmount },
+                success: function (response) {
+                    location.reload(true);
+                },
+                error: function (xhr, status, error) {
+                    // handle errors if necessary
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            var quantityInputs = document.querySelectorAll("[id^='amount-']");
+            quantityInputs.forEach(function (input) {
+                input.addEventListener("change", function () {
+                    var cartnr = this.id.replace("amount-", "");
+                    updateShoppingcart(cartnr);
+                });
+            });
+        });
+
+        $(document).ready(function() {
+          // Event handler for order button click
+          $('#orderButton').click(function() {
+            // Show loading screen
+            $('#test').hide();
+            $('#loadingScreen').show();
+          });
+        });
+
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

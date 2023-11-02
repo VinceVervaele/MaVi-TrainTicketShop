@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Trains_FSD.ViewModels.HotelInfo>
+
+@{
+    ViewData["Title"] = "GetHotels";
+    Layout = "~/Views/Shared/_LayoutHotelsList.cshtml";
+}
+
+<div class="container">
+    <h1>Book A Hotel Room!</h1>
+
+    <div class="card-container">
+        @foreach (var item in Model)
+        {
+            <div class="card-container-item">
+                <div class="card" style="background-image: url('/images/hotels/@{@item.City}.jpg');">
+                    <div class="card-content">
+                        <div class="card-title">@Html.DisplayFor(modelItem => item.display_name)</div>
+                        <div class="card-city">@Html.DisplayFor(modelItem => item.City), @Html.DisplayFor(modelItem => item.Country)</div>
+                    </div>
+                </div>
+
+                <a asp-action="BookHotel" asp-controller="Hotel" asp-route-hotelName="@item.display_name" class="btn bookingButton">Book Now</a>
+            </div>
+        }
+    </div>
+</div>

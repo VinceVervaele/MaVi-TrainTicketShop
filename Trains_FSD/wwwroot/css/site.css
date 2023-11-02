@@ -1,0 +1,95 @@
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 auto;
+    padding: 0;
+    margin-bottom: 60px;
+    padding-top: 100px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+footer {
+    padding: 15px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: right;
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navbar-nav .nav-item .nav-link {
+    margin: 2px;
+}
+
+.nav-link img {
+    transition: transform 0.2s;
+}
+
+.nav-link:active img {
+    transform: scale(0.8);
+}
+
+.active {
+    border-bottom: 3px solid #fa6d3c;
+}
+
+.navigationItem {
+    margin: 0 5px 0 5px;
+    font-size: 1.1em;
+}
+
+.nav-link img {
+    height: 30px;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #f64a37;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #dd3728;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f2f2f2;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+
+/*translation*/
+
+#translationIcon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    cursor: pointer;
+}
+

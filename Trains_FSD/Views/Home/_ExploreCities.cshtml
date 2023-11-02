@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<div class="carousel">
+    @if (ViewBag.Ordered)
+    {
+        <h2>@Localizer["Your Favourite Destinations"].Value</h2>
+        <div class="carousel-container-ordered">
+            @foreach (var city in ViewBag.FavCities)
+            {
+                <div class="cityItemOrdered">
+                    <img src="/images/cities/@city-expl.jpeg">
+                    <div class="carouselCityName">@Localizer[@city].Value</div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <h2>@Localizer["Most Popular Destinations"].Value</h2>
+        <div class="carousel-container">
+            @foreach (var city in ViewBag.FavCities)
+            {
+                <div class="cityItem">
+                    <img src="/images/cities/@city-expl.jpeg">
+                    <div class="carouselCityName">@Localizer[@city].Value</div>
+                </div>
+            }
+        </div>
+    }
+
+</div>
+
+
+
+
+

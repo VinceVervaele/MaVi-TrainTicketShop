@@ -1,0 +1,38 @@
+﻿<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo-background/train_icon.png" alt="main train icon" height="60px" /></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1 justify-content-center">
+                    <li class="nav-item navigationItem">
+                        <a id="home-link" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index" title="Home">
+                            <img src="~/images/navbar-icons/home-nav.png" alt="home icon" />
+                        </a>
+                    </li>
+                    <li class="nav-item navigationItem">
+                        <a id="tickets-link" class="nav-link text-dark" asp-area="" asp-controller="Ticket" asp-action="Index" title="Trains">
+                            <img src="~/images/navbar-icons/train-nav.png" alt="train icon" />
+                        </a>
+                    </li>
+                    <li class="nav-item navigationItem">
+                        <a id="about-link" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy" title="About/Privacy">
+                            <img src="~/images/navbar-icons/about-nav.png" alt="info icon" />
+                        </a>
+                    </li>
+                    <li class="nav-item navigationItem">
+                        <a id="cart-link" class="nav-link text-dark" asp-area="" asp-controller="ShoppingCart" asp-action="Index" title="Cart">
+                            <img src="~/images/navbar-icons/cart-nav.png" alt="cart icon" />
+                        </a>
+                    </li>
+                </ul>
+
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </nav>
+</header>

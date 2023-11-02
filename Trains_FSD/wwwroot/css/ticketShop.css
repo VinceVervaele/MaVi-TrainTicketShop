@@ -1,0 +1,225 @@
+﻿body {
+    user-select: none;
+    accent-color: #f64a37;
+}
+
+footer {
+    color: black
+}
+
+h3 {
+    font-weight: bold;
+}
+
+.price-tag {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #f64a37;
+    padding: 5px 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.card {
+    margin: 25px 5px 0 5px;
+}
+
+.card:first-child {
+    margin-top: 10px;
+}
+
+.card:last-child {
+    margin-bottom: 0px;
+}
+
+.searchButton, .searchButton:hover, .searchButton:active, .searchButton:focus {
+    background-color: #0c3444;
+    width: 100%;
+    border-color: black;
+}
+
+.classSelection {
+    padding-left: 5px;
+}
+
+.price-tag span {
+    font-size: 1.4rem;
+    color: white;
+    font-weight: bold;
+}
+
+.departure-arrival {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.arrow-icon {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.transfers {
+    text-align: center;
+    width: 100%;
+
+}
+
+.transfers-heading {
+    display: inline-block;
+    border-bottom: 1px solid black;
+    width: 100%;
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.transfers-list {
+    list-style-type: none;
+    padding: 0;
+    font-size: 15px;
+}
+
+.transfers-item p:nth-child(2) {
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.transfers-item p:nth-child(4) {
+    color: royalblue;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.transfers-item {
+    display: flex;
+    justify-content: space-around;
+}
+
+.transfers-item p {
+    display: inline-block;
+    margin: 0;
+}
+
+.transfers-item img {
+    width: 20px;
+    padding-bottom: 2px;
+}
+
+.country-flag {
+    width: 35px;
+    height: auto;
+    padding: 0 3px 3px 3px;
+
+}
+
+.class-icon {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 40px;
+    z-index: 1;
+}
+
+.add-to-cart img {
+    width: 100%;
+}
+
+.add-to-cart:hover {
+    cursor: pointer;
+}
+
+.add-to-cart a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.add-to-cart div {
+    color: black;
+    font-size: 1.1em;
+    text-align: center;
+    padding: 3px 15px 3px 15px;
+}
+
+.searchResultList {
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+.resultHeading {
+    padding-top: 10px;
+}
+
+.searchCard {
+    background-color: #f1f1f1;
+}
+
+.card-disabled {
+    position: relative;
+}
+
+.card-disabled::before {
+    content: "Not available";
+    position: absolute;
+    font-size: 2rem;
+    font-weight: bold;
+    color: red;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    border: 2px solid red;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.card-disabled::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    backdrop-filter: blur(3px);
+}
+
+
+@media only screen and (max-width: 767px) {
+    .searchResultList {
+        height: auto;
+        overflow-y: visible;
+    }
+
+    .card {
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+
+    .card:first-child {
+        margin-top: 20px;
+    }
+
+    .transfers {
+        flex-direction: column;
+    }
+
+    .transfers-item {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .searchResultList {
+        height: auto;
+        width: 100%;
+    }
+
+    .resultHeading {
+        padding-top: 40px;
+    }
+}
+
+
